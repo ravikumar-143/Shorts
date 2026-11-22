@@ -10,7 +10,7 @@
 
   <!-- Navbar -->
   <nav class="flex justify-between items-center px-6 py-4 border-b border-slate-800 max-w-6xl mx-auto">
-    <div class="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+    <div onclick="adminTestUnlock()" class="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent cursor-pointer select-none">
       FacelessIndia AI
     </div>
     <div class="flex items-center gap-4">
@@ -24,7 +24,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <header class="text-center py-16 px-4 max-w-3xl mx-auto">
+  <header class="text-center py-14 px-4 max-w-3xl mx-auto">
     <span class="bg-purple-900/40 text-purple-300 border border-purple-700/50 px-3 py-1 rounded-full text-xs uppercase tracking-wider">
       Powered by NVIDIA AI
     </span>
@@ -36,7 +36,7 @@
     </p>
   </header>
 
-  <!-- Creator Studio (Pay-First Locked) -->
+  <!-- Creator Studio -->
   <section class="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl mx-4">
     <h2 class="text-xl font-bold mb-4">AI Video Creator Studio</h2>
 
@@ -97,8 +97,8 @@
           <li>✓ Instant AI Voiceover & Captions</li>
           <li>✓ Commercial YouTube Rights</li>
         </ul>
-        <!-- Replace # with your Dodo Payments / Razorpay ₹499 Link -->
-        <a href="YOUR_RAZORPAY_OR_DODO_499_LINK" target="_blank" class="block text-center mt-8 bg-slate-800 hover:bg-slate-700 border border-slate-700 py-3 rounded-xl font-semibold transition">
+        <!-- మీ Razorpay/Dodo ₹499 లింక్ ఇక్కడ పెట్టండి -->
+        <a href="https://razorpay.me/@yourlink499" target="_blank" class="block text-center mt-8 bg-slate-800 hover:bg-slate-700 border border-slate-700 py-3 rounded-xl font-semibold transition">
           Pay ₹499 via UPI / Card
         </a>
       </div>
@@ -114,8 +114,8 @@
           <li>✓ Multi-Scene Visual Prompts</li>
           <li>✓ 24/7 Priority Support</li>
         </ul>
-        <!-- Replace # with your Dodo Payments / Razorpay ₹999 Link -->
-        <a href="YOUR_RAZORPAY_OR_DODO_999_LINK" target="_blank" class="block text-center mt-8 bg-purple-600 hover:bg-purple-700 py-3 rounded-xl font-semibold transition">
+        <!-- మీ Razorpay/Dodo ₹999 లింక్ ఇక్కడ పెట్టండి -->
+        <a href="https://razorpay.me/@yourlink999" target="_blank" class="block text-center mt-8 bg-purple-600 hover:bg-purple-700 py-3 rounded-xl font-semibold transition">
           Pay ₹999 via UPI / Card
         </a>
       </div>
@@ -123,9 +123,36 @@
   </section>
 
   <script>
-    // Check credits (Default 0 for Pay-First)
     let credits = parseInt(localStorage.getItem('user_credits') || '0');
+    let tapCount = 0;
+
+    // Auto-unlock credits when customer returns from payment redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('paid') === 'starter') {
+      credits += 15;
+      localStorage.setItem('user_credits', credits);
+      window.history.replaceState({}, document.title, "/");
+      alert('Payment Successful! 15 Video Credits added to your account.');
+    } else if (urlParams.get('paid') === 'pro') {
+      credits += 40;
+      localStorage.setItem('user_credits', credits);
+      window.history.replaceState({}, document.title, "/");
+      alert('Payment Successful! 40 Video Credits added to your account.');
+    }
+
     updateUI();
+
+    // Secret 5-tap unlock for owner testing on mobile
+    function adminTestUnlock() {
+      tapCount++;
+      if (tapCount === 5) {
+        credits += 5;
+        localStorage.setItem('user_credits', credits);
+        updateUI();
+        alert('Owner Test Mode: 5 Free Credits Unlocked!');
+        tapCount = 0;
+      }
+    }
 
     function updateUI() {
       document.getElementById('creditBadge').innerText = `Credits: ${credits}`;
@@ -162,7 +189,7 @@
           document.getElementById('scriptOutput').innerText = data.script;
           document.getElementById('resultBox').classList.remove('hidden');
         } else {
-          alert(data.error || 'Generation failed');
+          alert(data.error || 'Generation failed. Check NVIDIA_API_KEY in Vercel.');
         }
       } catch (e) {
         alert('Server error');
@@ -179,5 +206,4 @@
     }
   </script>
 </body>
-        </html>
-        
+</html>
