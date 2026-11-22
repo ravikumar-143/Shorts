@@ -1,148 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FacelessIndia AI — Automated Faceless Videos</title>
+  <title>FacelessIndia AI — Automated Faceless Reels & Shorts</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .float-card { animation: floatSlow 4s ease-in-out infinite; }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-white font-sans antialiased">
+<body class="bg-[#07090f] text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
 
-  <!-- Navbar -->
-  <nav class="flex justify-between items-center px-6 py-4 border-b border-slate-800 max-w-6xl mx-auto">
-    <div onclick="adminTestUnlock()" class="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent cursor-pointer select-none">
-      FacelessIndia AI
-    </div>
-    <div class="flex items-center gap-4">
-      <span id="creditBadge" class="bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-sm text-amber-400 font-semibold">
-        Credits: 0
-      </span>
-      <a href="#pricing" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg text-sm font-medium transition">
-        Buy Credits
-      </a>
+  <!-- Sticky Navbar -->
+  <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div onclick="adminTestUnlock()" class="flex items-center gap-2 cursor-pointer select-none">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center font-black text-white text-sm shadow-lg shadow-indigo-500/30">
+          F
+        </div>
+        <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+          FacelessIndia<span class="text-indigo-400">.ai</span>
+        </span>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+        <a href="#examples" class="hover:text-white transition">Examples</a>
+        <a href="#studio" class="hover:text-white transition">AI Studio</a>
+        <a href="#how" class="hover:text-white transition">How it Works</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing (₹)</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span id="creditBadge" class="bg-slate-900 border border-slate-700/80 px-3 py-1.5 rounded-full text-xs font-bold text-amber-400">
+          Credits: 0
+        </span>
+        <a href="#pricing" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg shadow-lg shadow-indigo-600/25 transition">
+          Get Started
+        </a>
+      </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <header class="text-center py-14 px-4 max-w-3xl mx-auto">
-    <span class="bg-purple-900/40 text-purple-300 border border-purple-700/50 px-3 py-1 rounded-full text-xs uppercase tracking-wider">
-      Powered by NVIDIA AI
-    </span>
-    <h1 class="text-4xl md:text-6xl font-extrabold mt-4 leading-tight">
-      Create Viral Faceless Videos in <span class="text-purple-400">60 Seconds</span>
-    </h1>
-    <p class="text-slate-400 mt-4 text-lg">
-      Select a niche, enter your topic, and let AI write the viral hook, generate voiceover, and build your YouTube Shorts & Reels automatically.
-    </p>
-  </header>
-
-  <!-- Creator Studio -->
-  <section class="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl mx-4">
-    <h2 class="text-xl font-bold mb-4">AI Video Creator Studio</h2>
-
-    <div class="space-y-4">
-      <div>
-        <label class="block text-sm text-slate-400 mb-1">Select Niche</label>
-        <select id="niche" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white">
-          <option value="Motivation & Mindset">Motivation & Mindset</option>
-          <option value="Scary & Horror Stories">Scary & Horror Stories</option>
-          <option value="Personal Finance & Money">Personal Finance & Money</option>
-          <option value="Mind-Blowing Tech Facts">Mind-Blowing Tech Facts</option>
-        </select>
+  <section class="relative overflow-hidden pt-14 pb-20 px-4">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_55%)] pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-indigo-950/60 border border-indigo-500/30 rounded-full px-3.5 py-1 text-xs font-medium text-indigo-300 mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Automated YouTube Shorts & Instagram Reels Engine
       </div>
 
-      <div>
-        <label class="block text-sm text-slate-400 mb-1">Video Topic</label>
-        <input id="topic" type="text" placeholder="e.g., 3 Habits of Millionaires" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white" />
-      </div>
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.12]">
+        Faceless Videos on <br class="hidden sm:block" />
+        <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Complete Autopilot.
+        </span>
+      </h1>
 
-      <!-- Pay-First Lock Warning -->
-      <div id="payLockBox" class="bg-amber-950/40 border border-amber-700/50 rounded-xl p-4 text-center">
-        <p class="text-amber-300 text-sm mb-3">You have <strong>0 credits</strong> left. Upgrade to unlock instant AI video generation.</p>
-        <a href="#pricing" class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
-          Unlock 15 Videos — ₹499
+      <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
+        No camera. No editing. No showing your face. Pick a viral niche and our NVIDIA-powered AI writes high-retention scripts, generates AI voiceovers, and formats ready-to-post 9:16 Reels in seconds.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#studio" class="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-indigo-600/25 transition">
+          Create Your First Video →
+        </a>
+        <a href="#pricing" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold px-7 py-3.5 rounded-xl transition">
+          View Plans (Starts ₹499)
         </a>
       </div>
 
-      <button id="generateBtn" onclick="generateVideo()" disabled class="w-full bg-purple-600 disabled:bg-slate-800 disabled:text-slate-500 hover:bg-purple-700 font-bold py-3.5 rounded-xl transition cursor-pointer">
-        Generate Faceless Video (1 Credit)
-      </button>
+      <!-- Trust Strip -->
+      <div class="mt-10 flex flex-wrap justify-center gap-6 text-xs text-slate-500">
+        <span>✓ 9:16 Vertical Shorts Format</span>
+        <span>✓ Instant AI Voiceover + Subtitles</span>
+        <span>✓ UPI, GPay, PhonePe & Cards Supported</span>
+      </div>
     </div>
 
-    <!-- Output Preview -->
-    <div id="resultBox" class="hidden mt-6 bg-slate-950 border border-slate-800 rounded-xl p-5">
-      <div class="flex justify-between items-center mb-3">
-        <h3 class="font-bold text-purple-400">Generated Script & Voice Preview</h3>
-        <button onclick="speakScript()" class="bg-emerald-600 hover:bg-emerald-700 text-xs px-3 py-1.5 rounded-lg font-semibold">
-          ▶ Play AI Voiceover
-        </button>
+    <!-- 9:16 Vertical Showcase Cards (facelessreels.com style) -->
+    <div id="examples" class="max-w-5xl mx-auto mt-14 grid grid-cols-1 sm:grid-cols-3 gap-5 px-2">
+      <!-- Sample 1 -->
+      <div class="glass-panel rounded-2xl p-3 float-card">
+        <div class="aspect-[9/14] rounded-xl bg-gradient-to-b from-slate-900 via-indigo-950/70 to-black p-4 flex flex-col justify-between relative overflow-hidden border border-slate-800">
+          <span class="self-start bg-black/60 text-[11px] px-2.5 py-1 rounded-full text-indigo-300 border border-indigo-500/30">Psychology & Mindset</span>
+          <div class="my-auto text-center px-2">
+            <p class="font-black text-lg uppercase tracking-wide text-white drop-shadow">
+              "SILENCE IS THE <span class="text-amber-400">LOUDEST</span> POWER MOVE."
+            </p>
+          </div>
+          <div class="text-[11px] text-slate-400 flex justify-between items-center border-t border-slate-800/80 pt-2">
+            <span>▶ 1.4M Views</span>
+            <span class="text-emerald-400 font-semibold">45s Reel</span>
+          </div>
+        </div>
       </div>
-      <p id="scriptOutput" class="text-slate-300 text-sm whitespace-pre-line leading-relaxed"></p>
+
+      <!-- Sample 2 -->
+      <div class="glass-panel rounded-2xl p-3">
+        <div class="aspect-[9/14] rounded-xl bg-gradient-to-b from-slate-900 via-rose-950/60 to-black p-4 flex flex-col justify-between relative overflow-hidden border border-slate-800">
+          <span class="self-start bg-black/60 text-[11px] px-2.5 py-1 rounded-full text-rose-300 border border-rose-500/30">Scary & Mystery</span>
+          <div class="my-auto text-center px-2">
+            <p class="font-black text-lg uppercase tracking-wide text-white drop-shadow">
+              "NEVER OPEN THE DOOR AT <span class="text-rose-400">3:17 AM</span>..."
+            </p>
+          </div>
+          <div class="text-[11px] text-slate-400 flex justify-between items-center border-t border-slate-800/80 pt-2">
+            <span>▶ 2.8M Views</span>
+            <span class="text-emerald-400 font-semibold">52s Short</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sample 3 -->
+      <div class="glass-panel rounded-2xl p-3 float-card">
+        <div class="aspect-[9/14] rounded-xl bg-gradient-to-b from-slate-900 via-emerald-950/60 to-black p-4 flex flex-col justify-between relative overflow-hidden border border-slate-800">
+          <span class="self-start bg-black/60 text-[11px] px-2.5 py-1 rounded-full text-emerald-300 border border-emerald-500/30">Wealth & Finance</span>
+          <div class="my-auto text-center px-2">
+            <p class="font-black text-lg uppercase tracking-wide text-white drop-shadow">
+              "3 MONEY RULES THE <span class="text-emerald-400">TOP 1%</span> NEVER BREAK."
+            </p>
+          </div>
+          <div class="text-[11px] text-slate-400 flex justify-between items-center border-t border-slate-800/80 pt-2">
+            <span>▶ 980K Views</span>
+            <span class="text-emerald-400 font-semibold">40s Reel</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- INR Pricing Section -->
-  <section id="pricing" class="max-w-4xl mx-auto py-20 px-4">
-    <h2 class="text-3xl font-bold text-center mb-2">Simple Indian Pricing (UPI & Cards)</h2>
-    <p class="text-slate-400 text-center mb-10">Pay once, generate high-retention Shorts & Reels.</p>
+  <!-- Interactive AI Creator Studio + 9:16 Live Preview -->
+  <section id="studio" class="max-w-5xl mx-auto py-12 px-4">
+    <div class="glass-panel rounded-3xl p-6 sm:p-10 shadow-2xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 border-b border-slate-800">
+        <div>
+          <h2 class="text-2xl font-extrabold">Faceless Reels Creator Studio</h2>
+          <p class="text-slate-400 text-sm">Configure your series niche, voice style, and generate instant 9:16 content.</p>
+        </div>
+        <span class="text-xs bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-lg text-slate-300 self-start">
+          Output: 1080x1920 (9:16 Vertical)
+        </span>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-8 mt-6">
+        <!-- Left Controls -->
+        <div class="md:col-span-7 space-y-5">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">1. Choose Viral Niche</label>
+            <select id="niche" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-sm text-white focus:border-indigo-500 outline-none">
+              <option value="Motivation & Stoic Mindset">Motivation & Stoic Mindset</option>
+              <option value="Scary & Horror Stories">Scary & Horror Stories</option>
+              <option value="Personal Finance & Wealth">Personal Finance & Wealth</option>
+              <option value="AI & Mind-Blowing Tech Facts">AI & Mind-Blowing Tech Facts</option>
+              <option value="Dark Psychology & Human Behavior">Dark Psychology & Human Behavior</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">2. AI Voice</label>
+              <select id="voiceStyle" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white">
+                <option value="0.92">Deep Narrator (Viral)</option>
+                <option value="1.08">Fast Energetic Hook</option>
+                <option value="1.0">Calm Storyteller</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">3. Duration</label>
+              <select id="duration" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white">
+                <option value="30-45 Seconds">30–45 Sec (Shorts)</option>
+                <option value="60 Seconds">60 Sec (Reels)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">4. Video Topic or Hook Idea</label>
+            <input id="topic" type="text" placeholder="e.g., Why 99% of people stay broke" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-sm text-white focus:border-indigo-500 outline-none" />
+          </div>
+
+          <!-- Pay-First Lock Box -->
+          <div id="payLockBox" class="bg-gradient-to-r from-amber-950/50 to-orange-950/40 border border-amber-500/40 rounded-2xl p-4">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-amber-300 font-bold text-sm">Pay-First Lock Active (0 Credits)</p>
+                <p class="text-slate-300 text-xs mt-1">Activate a creator pack via UPI/Card to unlock instant script, voiceover, and 9:16 caption rendering.</p>
+              </div>
+              <a href="#pricing" class="shrink-0 bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl transition">
+                Unlock ₹499
+              </a>
+            </div>
+          </div>
+
+          <button id="generateBtn" onclick="generateVideo()" disabled class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 disabled:from-slate-800 disabled:to-slate-800 disabled:text-slate-500 hover:from-indigo-500 hover:to-purple-500 font-bold py-4 rounded-xl shadow-lg transition cursor-pointer">
+            Generate Faceless Reel (1 Credit)
+          </button>
+
+          <!-- Full Script Box -->
+          <div id="resultBox" class="hidden bg-slate-950 border border-slate-800 rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-bold uppercase text-indigo-400">Generated Viral Script</span>
+              <button onclick="copyScript()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-md text-slate-300">
+                Copy Text
+              </button>
+            </div>
+            <p id="scriptOutput" class="text-slate-300 text-xs whitespace-pre-line leading-relaxed max-h-48 overflow-y-auto"></p>
+          </div>
+        </div>
+
+        <!-- Right 9:16 Vertical Live Reel Player -->
+        <div class="md:col-span-5 flex flex-col items-center justify-center">
+          <div class="w-64 aspect-[9/16] rounded-3xl bg-gradient-to-b from-indigo-950 via-slate-900 to-black border-2 border-slate-800 shadow-2xl p-5 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-center text-[10px] text-slate-400">
+              <span class="bg-black/50 px-2 py-0.5 rounded-full">9:16 PREVIEW</span>
+              <span id="playerStatus" class="text-emerald-400 font-semibold">READY</span>
+            </div>
+
+            <!-- Live Animated Captions Screen -->
+            <div class="my-auto text-center px-1">
+              <p id="liveCaption" class="font-black text-lg uppercase leading-snug text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                YOUR VIRAL HOOK APPEARS HERE...
+              </p>
+            </div>
+
+            <!-- Player Controls -->
+            <div class="space-y-2">
+              <button id="playReelBtn" onclick="playReelPreview()" disabled class="w-full bg-emerald-500 disabled:bg-slate-800 disabled:text-slate-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs py-2.5 rounded-xl transition">
+                ▶ Play Reel + AI Voice
+              </button>
+              <button onclick="stopReelPreview()" class="w-full bg-slate-900/90 hover:bg-slate-800 text-slate-400 text-[11px] py-1.5 rounded-lg">
+                ■ Stop Audio
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works (3 Steps) -->
+  <section id="how" class="max-w-5xl mx-auto py-16 px-4">
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-center mb-10">How FacelessIndia Works</h2>
+    <div class="grid sm:grid-cols-3 gap-6">
+      <div class="glass-panel p-6 rounded-2xl">
+        <div class="w-9 h-9 rounded-lg bg-indigo-600/20 text-indigo-400 font-black flex items-center justify-center mb-4">1</div>
+        <h3 class="font-bold text-lg">Select Niche & Topic</h3>
+        <p class="text-slate-400 text-sm mt-2">Choose from proven viral categories like Motivation, Scary Stories, Finance, or AI Facts.</p>
+      </div>
+      <div class="glass-panel p-6 rounded-2xl">
+        <div class="w-9 h-9 rounded-lg bg-purple-600/20 text-purple-400 font-black flex items-center justify-center mb-4">2</div>
+        <h3 class="font-bold text-lg">AI Writes & Voices</h3>
+        <p class="text-slate-400 text-sm mt-2">Our AI crafts a scroll-stopping 3-second hook, scene cues, and dynamic voiceover automatically.</p>
+      </div>
+      <div class="glass-panel p-6 rounded-2xl">
+        <div class="w-9 h-9 rounded-lg bg-pink-600/20 text-pink-400 font-black flex items-center justify-center mb-4">3</div>
+        <h3 class="font-bold text-lg">Post & Monetize</h3>
+        <p class="text-slate-400 text-sm mt-2">Upload daily to YouTube Shorts & Instagram Reels to grow faceless channels fast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing in Indian Rupees (₹ INR) -->
+  <section id="pricing" class="max-w-4xl mx-auto py-16 px-4">
+    <div class="text-center mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Transparent Indian Pricing</span>
+      <h2 class="text-3xl sm:text-4xl font-black mt-2">Start Growing Your Faceless Channel</h2>
+      <p class="text-slate-400 text-sm mt-2">Instant credit activation via UPI, GPay, PhonePe, Paytm & Cards.</p>
+    </div>
 
     <div class="grid md:grid-cols-2 gap-6">
-      <!-- Starter Plan -->
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
-        <h3 class="text-xl font-bold">Starter Creator</h3>
-        <div class="text-4xl font-extrabold mt-3">₹499 <span class="text-sm font-normal text-slate-400">/ month</span></div>
-        <ul class="mt-6 space-y-3 text-slate-300 text-sm">
-          <li>✓ 15 AI Faceless Video Credits</li>
-          <li>✓ Viral Hook Script Generator</li>
-          <li>✓ Instant AI Voiceover & Captions</li>
-          <li>✓ Commercial YouTube Rights</li>
-        </ul>
-        <!-- మీ Razorpay/Dodo ₹499 లింక్ ఇక్కడ పెట్టండి -->
-        <a href="https://razorpay.me/@yourlink499" target="_blank" class="block text-center mt-8 bg-slate-800 hover:bg-slate-700 border border-slate-700 py-3 rounded-xl font-semibold transition">
+      <!-- Starter Plan ₹499 -->
+      <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between">
+        <div>
+          <h3 class="text-xl font-bold">Starter Creator</h3>
+          <p class="text-slate-400 text-xs mt-1">Best for testing your first faceless page</p>
+          <div class="mt-5 flex items-baseline gap-1">
+            <span class="text-4xl font-black">₹499</span>
+            <span class="text-slate-400 text-sm">/ month</span>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-slate-300">
+            <li>✓ <strong>15 AI Faceless Video Credits</strong></li>
+            <li>✓ High-Retention Hook Script Engine</li>
+            <li>✓ 9:16 Live Caption & Voice Preview</li>
+            <li>✓ Commercial YouTube & Reels Rights</li>
+          </ul>
+        </div>
+        <a href="https://razorpay.me/@yourlink499" target="_blank" class="block text-center mt-8 bg-slate-800 hover:bg-slate-700 border border-slate-700 py-3.5 rounded-xl font-bold text-sm transition">
           Pay ₹499 via UPI / Card
         </a>
       </div>
 
-      <!-- Pro Plan -->
-      <div class="bg-gradient-to-b from-purple-950/60 to-slate-900 border border-purple-500 rounded-2xl p-8 relative">
-        <span class="absolute top-4 right-4 bg-purple-600 text-xs px-2.5 py-1 rounded-full font-semibold">POPULAR</span>
-        <h3 class="text-xl font-bold">Pro Automation</h3>
-        <div class="text-4xl font-extrabold mt-3">₹999 <span class="text-sm font-normal text-slate-400">/ month</span></div>
-        <ul class="mt-6 space-y-3 text-slate-300 text-sm">
-          <li>✓ 40 AI Faceless Video Credits</li>
-          <li>✓ Priority NVIDIA AI Generation</li>
-          <li>✓ Multi-Scene Visual Prompts</li>
-          <li>✓ 24/7 Priority Support</li>
-        </ul>
-        <!-- మీ Razorpay/Dodo ₹999 లింక్ ఇక్కడ పెట్టండి -->
-        <a href="https://razorpay.me/@yourlink999" target="_blank" class="block text-center mt-8 bg-purple-600 hover:bg-purple-700 py-3 rounded-xl font-semibold transition">
+      <!-- Pro Plan ₹999 -->
+      <div class="bg-gradient-to-b from-indigo-950/70 to-slate-900 border-2 border-indigo-500 rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-indigo-600/15">
+        <span class="absolute -top-3.5 right-6 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-[11px] font-extrabold px-3 py-1 rounded-full">
+          MOST POPULAR
+        </span>
+        <div>
+          <h3 class="text-xl font-bold">Pro Autopilot</h3>
+          <p class="text-indigo-300 text-xs mt-1">For daily Shorts & Reels posting</p>
+          <div class="mt-5 flex items-baseline gap-1">
+            <span class="text-4xl font-black">₹999</span>
+            <span class="text-slate-400 text-sm">/ month</span>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-slate-200">
+            <li>✓ <strong>40 AI Faceless Video Credits</strong></li>
+            <li>✓ Priority NVIDIA AI Generation</li>
+            <li>✓ Scene-by-Scene Visual Prompts</li>
+            <li>✓ 24/7 Priority Creator Support</li>
+          </ul>
+        </div>
+        <a href="https://razorpay.me/@yourlink999" target="_blank" class="block text-center mt-8 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 py-3.5 rounded-xl font-bold text-sm shadow-lg transition">
           Pay ₹999 via UPI / Card
         </a>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+    © 2026 FacelessIndia AI. Built for Indian Creators. All prices in INR (₹).
+  </footer>
+
   <script>
     let credits = parseInt(localStorage.getItem('user_credits') || '0');
     let tapCount = 0;
+    let captionTimer = null;
 
-    // Auto-unlock credits when customer returns from payment redirect
+    // Auto-unlock credits after payment gateway redirect
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('paid') === 'starter') {
       credits += 15;
       localStorage.setItem('user_credits', credits);
       window.history.replaceState({}, document.title, "/");
-      alert('Payment Successful! 15 Video Credits added to your account.');
+      alert('Payment Verified! 15 Video Credits added.');
     } else if (urlParams.get('paid') === 'pro') {
       credits += 40;
       localStorage.setItem('user_credits', credits);
       window.history.replaceState({}, document.title, "/");
-      alert('Payment Successful! 40 Video Credits added to your account.');
+      alert('Payment Verified! 40 Video Credits added.');
     }
 
     updateUI();
 
-    // Secret 5-tap unlock for owner testing on mobile
+    // Owner 5-tap unlock for mobile testing
     function adminTestUnlock() {
       tapCount++;
       if (tapCount === 5) {
@@ -169,40 +379,87 @@
 
     async function generateVideo() {
       const niche = document.getElementById('niche').value;
-      const topic = document.getElementById('topic').value;
-      if (!topic) return alert('Please enter a topic!');
+      const topic = document.getElementById('topic').value.trim();
+      const duration = document.getElementById('duration').value;
+      if (!topic) return alert('Please enter a video topic first!');
 
       const btn = document.getElementById('generateBtn');
-      btn.innerText = 'Generating with NVIDIA AI...';
+      btn.innerText = 'Generating Script & 9:16 Scenes...';
       btn.disabled = true;
+      document.getElementById('playerStatus').innerText = 'GENERATING...';
 
       try {
         const res = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ niche, topic })
+          body: JSON.stringify({ niche, topic: `${topic} (${duration})` })
         });
         const data = await res.json();
+
         if (data.script) {
           credits -= 1;
           localStorage.setItem('user_credits', credits);
           document.getElementById('scriptOutput').innerText = data.script;
           document.getElementById('resultBox').classList.remove('hidden');
+          document.getElementById('playReelBtn').disabled = false;
+          document.getElementById('playerStatus').innerText = 'READY TO PLAY';
+
+          // Show first hook line on 9:16 preview screen
+          const firstLine = data.script.split('\n').find(l => l.trim().length > 10) || topic;
+          document.getElementById('liveCaption').innerText = firstLine.replace(/[*#]/g, '').slice(0, 75);
         } else {
-          alert(data.error || 'Generation failed. Check NVIDIA_API_KEY in Vercel.');
+          alert(data.error || 'Generation failed.');
+          document.getElementById('playerStatus').innerText = 'ERROR';
         }
       } catch (e) {
-        alert('Server error');
+        alert('Network error connecting to server.');
       }
-      btn.innerText = 'Generate Faceless Video (1 Credit)';
+
+      btn.innerText = 'Generate Faceless Reel (1 Credit)';
       updateUI();
     }
 
-    function speakScript() {
-      const text = document.getElementById('scriptOutput').innerText;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.05;
+    function playReelPreview() {
+      stopReelPreview();
+      const rawText = document.getElementById('scriptOutput').innerText;
+      const cleanLines = rawText
+        .split('\n')
+        .map(l => l.replace(/[*#\[\]]/g, '').trim())
+        .filter(l => l.length > 4);
+
+      if (!cleanLines.length) return;
+
+      // Speak voiceover
+      const utterance = new SpeechSynthesisUtterance(cleanLines.join('. '));
+      utterance.rate = parseFloat(document.getElementById('voiceStyle').value || '1.0');
       speechSynthesis.speak(utterance);
+
+      // Animate 9:16 captions line-by-line
+      let idx = 0;
+      document.getElementById('playerStatus').innerText = 'PLAYING...';
+      document.getElementById('liveCaption').innerText = cleanLines[0];
+
+      captionTimer = setInterval(() => {
+        idx++;
+        if (idx < cleanLines.length) {
+          document.getElementById('liveCaption').innerText = cleanLines[idx];
+        } else {
+          clearInterval(captionTimer);
+          document.getElementById('playerStatus').innerText = 'FINISHED';
+        }
+      }, 2600);
+    }
+
+    function stopReelPreview() {
+      speechSynthesis.cancel();
+      if (captionTimer) clearInterval(captionTimer);
+      document.getElementById('playerStatus').innerText = 'READY';
+    }
+
+    function copyScript() {
+      const text = document.getElementById('scriptOutput').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Script copied to clipboard!');
     }
   </script>
 </body>
